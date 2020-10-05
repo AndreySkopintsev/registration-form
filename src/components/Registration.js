@@ -1,5 +1,7 @@
 import React from 'react'
+import axios from 'axios'
 
+const url = 'http://localhost:3001/api/register'
 
 class Registration extends React.Component{
     constructor(props){
@@ -18,7 +20,16 @@ class Registration extends React.Component{
 
     handleSubmit(e){
         e.preventDefault()
-        console.log(this.state)
+        const user = {
+            username:this.state.username,
+            email:this.state.email,
+            password:this.state.password
+        }
+
+        axios.post(url,user)
+        .then(res => {
+            console.log(res)
+        })
     }
 
     handleChange(e){
